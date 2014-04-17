@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Player : CubbartController {
 	
+	public static float distanceTraveled;
 
 	// Use this for initialization
 	void Start () {
@@ -11,6 +12,8 @@ public class Player : CubbartController {
 	
 	// Update is called once per frame
 	void Update () {
+
+		distanceTraveled = transform.localPosition.x; //update on the distance Player has traveled since start
 
 		targetSpeed = Input.GetAxisRaw("Horizontal")*speed;
 

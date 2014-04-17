@@ -28,7 +28,7 @@ public class PlatformManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(objectQueue.Peek ().localPosition.x + recycleOffset < Runner.distanceTraveled) {
+		if(objectQueue.Peek ().localPosition.x + recycleOffset < Player.distanceTraveled) {
 			Recycle();
 		}
 		
