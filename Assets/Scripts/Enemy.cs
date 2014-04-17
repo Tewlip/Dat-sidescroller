@@ -3,7 +3,8 @@ using System.Collections;
 
 public class Enemy : CubbartController {
 
-	int distance; 
+	int distance;
+	int speed;
 
 
 	// Use this for initialization
