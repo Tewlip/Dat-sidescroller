@@ -4,7 +4,7 @@ using System.Collections;
 public class CubbartController : MonoBehaviour {
 	
 	//Section for Cubbart control variables.
-	public float speed = 0.1f;
+	public float speed;
 	public float jump;
 	public short life;
 	public int damage;	
