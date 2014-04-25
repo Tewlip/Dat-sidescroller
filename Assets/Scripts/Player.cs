@@ -4,6 +4,7 @@ using System.Collections;
 public class Player : CubbartController {
 	
 	private bool isFalling = false; // is a variable only the player needs, which checks whether player is in the air or not.
+	public int distanceTraveled;
 
 	// Use this for initialization
 	void Start () {
@@ -13,7 +14,7 @@ public class Player : CubbartController {
 	// Update is called once per frame
 	void Update () 
 	{
-	
+
 		life = 1;
 		jump = 10;
 		speed = 4;
@@ -44,9 +45,10 @@ public class Player : CubbartController {
 		if(Input.GetKey(KeyCode.Space)&& isFalling == false)// checks of space is being pressed and isFalling is false
 		{
 			rigidbody.velocity = (new Vector3(0,jump,0)); // travels the value of variable jump along the y-axis. Remember to use velocity as addforce can create some funky bugs with onCollision (velocity remains constant while addforce is += to the existing value).
+			isFalling = true;// sets isFalling to true, so a jumps can't be made continously. Remember to place it outside of if, due to how Unity reads the code.
+
 		}
-		isFalling = true;// sets isFalling to true, so a jumps can't be made continously. Remember to place it outside of if, due to how Unity reads the code.
-	
+
 		//_______________________________________________________________________________
 	
 	}

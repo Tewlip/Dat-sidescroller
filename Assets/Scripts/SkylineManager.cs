@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class SkylineManager : MonoBehaviour {
+public class SkylineManager : Player {
 
 	public Transform prefab;
 	public int numberOfObjects; //used to control how many cubes need to fill the screen
@@ -27,7 +27,7 @@ public class SkylineManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(objectQueue.Peek().localPosition.x + recycleOffset < Player.distanceTraveled) {
+		if(objectQueue.Peek().localPosition.x + recycleOffset < distanceTraveled) {
 			Recycle();
 		}
 	
