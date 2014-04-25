@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class PlatformManager : Player {
+public class PlatformManager : MonoBehaviour {
 	
 	public Transform prefab;
 	public int numberOfObjects; //used to control how many cubes need to fill the screen
@@ -28,7 +28,7 @@ public class PlatformManager : Player {
 	
 	// Update is called once per frame
 	void Update () {
-		if(objectQueue.Peek ().localPosition.x + recycleOffset < distanceTraveled) {
+		if(objectQueue.Peek ().localPosition.x + recycleOffset < Player.distanceTraveled) {
 			Recycle();
 		}
 		
