@@ -3,7 +3,11 @@ using System.Collections;
 
 public class Player : CubbartController {
 	
+
+	public static float distanceTraveled;
+
 	private bool isFalling = false; // is a variable only the player needs, which checks whether player is in the air or not.
+
 
 	// Use this for initialization
 	void Start () {
@@ -17,6 +21,8 @@ public class Player : CubbartController {
 		life = 1;
 		jump = 200;
 		speed = 4;
+
+		distanceTraveled = transform.localPosition.x; //update on the distance Player has traveled since start
 
 		targetSpeed = Input.GetAxisRaw("Horizontal")*speed;
 
