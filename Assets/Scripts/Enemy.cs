@@ -6,9 +6,9 @@ public class Enemy : CubbartController
 	public Transform prefab;
 	public Transform target;
 	public float chaseSpeed = 3f;
-	public Vector2 speed = new Vector2(10, 10); //speed of the object
-	public Vector2 direction = new Vector2(-1, 0); // moving directions
-	private Vector2 movement;
+	public Vector3 patrol = new Vector3(10, 10, 0); //speed of the object
+	public Vector3 direction = new Vector3(-1, 0, 0); // moving directions
+	public Vector3 movement;
 	
 	
 	void Update()
@@ -20,16 +20,16 @@ public class Enemy : CubbartController
 		if (Vector3.Distance(transform.position,target.position)>1f){//move if distance from target is greater than 1
 			transform.Translate(new Vector3(chaseSpeed* Time.deltaTime,0,0) );
 		}
-
-		// 2 - Movement
-		movement = new Vector2(
-			speed.x * direction.x,
-			speed.y * direction.y);
+		
+		//Movement
+		movement = new Vector3(
+			patrol.x * direction.x,
+			patrol.y * direction.y);
 	}
-
+	
 	void FixedUpdate()
 	{
 		// Apply movement to the rigidbody
-		rigidbody2D.velocity = movement;
+		rigidbody.velocity = movement;
 	}
 }	
