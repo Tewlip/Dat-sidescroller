@@ -2,9 +2,8 @@
 using System.Collections;
 
 public class Player : CubbartController {
-
-	public Transform laser_pref;
-	private bool isFalling = false; // is a variable only the player needs, which checks whether player is in the air or not.
+	
+	private bool isFalling = true; // is a variable only the player needs, which checks whether player is in the air or not.
 	public static float distanceTraveled;
 
 	// Use this for initialization
@@ -40,10 +39,6 @@ public class Player : CubbartController {
 
 		if(Input.GetKey(KeyCode.S)) // testing to see if player wont stray from the z-axis
 		transform.position += new Vector3(0,0,1);
-
-	//	if (Input.GetKey(KeyCode.LeftControl)){
-	//		Instantiate(laser_pref, Vector3(transform.position.x+1,transform.position.y, 0), Quaternion.identity);
-	//	}
 
 		//_________________________________________________________________________________
 
