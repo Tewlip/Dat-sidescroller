@@ -3,8 +3,8 @@ using System.Collections;
 
 public class Player : CubbartController {
 	
-	private bool isFalling = true; // is a variable only the player needs, which checks whether player is in the air or not.
-	public int distanceTraveled;
+	private bool isFalling = false; // is a variable only the player needs, which checks whether player is in the air or not.
+	public static float distanceTraveled;
 
 	// Use this for initialization
 	void Start () {
@@ -22,7 +22,7 @@ public class Player : CubbartController {
 		targetSpeed = Input.GetAxisRaw("Horizontal")*speed;
 
 		transform.position = new Vector3 (transform.position.x, transform.position.y, 0);// keeps player on the z-axis of virtual environment.
-
+		distanceTraveled = transform.localPosition.x;
 		//___________________________________________________________________________________
 
 		transform.position = transform.position + new Vector3(speed,0,0) * Time.deltaTime;//automatic movement for the hero.
