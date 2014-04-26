@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Enemy : CubbartController
 {
+	public Transform prefab;
 	public Transform target;
 	public float chaseSpeed = 3f;
 	public Vector2 speed = new Vector2(10, 10); //speed of the object
