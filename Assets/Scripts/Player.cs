@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Player : CubbartController {
 	
-	private bool isFalling = false; // is a variable only the player needs, which checks whether player is in the air or not.
+	private bool isFalling = true; // is a variable only the player needs, which checks whether player is in the air or not.
 	public int distanceTraveled;
 
 	// Use this for initialization
