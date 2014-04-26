@@ -1,11 +1,10 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 public class Player : CubbartController {
 	
 	private bool isFalling = false; // is a variable only the player needs, which checks whether player is in the air or not.
-	public int distanceTraveled;
-	public Transform Laser_Pref;
+	public static float distanceTraveled;
 
 	// Use this for initialization
 	void Start () {
@@ -23,7 +22,7 @@ public class Player : CubbartController {
 		targetSpeed = Input.GetAxisRaw("Horizontal")*speed;
 
 		transform.position = new Vector3 (transform.position.x, transform.position.y, 0);// keeps player on the z-axis of virtual environment.
-
+		distanceTraveled = transform.localPosition.x;
 		//___________________________________________________________________________________
 
 		transform.position = transform.position + new Vector3(speed,0,0) * Time.deltaTime;//automatic movement for the hero.
@@ -40,10 +39,6 @@ public class Player : CubbartController {
 
 		if(Input.GetKey(KeyCode.S)) // testing to see if player wont stray from the z-axis
 		transform.position += new Vector3(0,0,1);
-
-		if (Input.GetAxis("FireLaser")){
-			Instantiate(Laser_Pref, Vector3(transform.position.x+1, transform.position.y, 2, Quaternion.identity));
-		}
 
 		//_________________________________________________________________________________
 
