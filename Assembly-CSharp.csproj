@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Camera.cs" />
+     <Compile Include="Assets\Scripts\Coins.cs" />
      <Compile Include="Assets\Scripts\CubbartController.cs" />
      <Compile Include="Assets\Scripts\CubbartPhysics.cs" />
      <Compile Include="Assets\Scripts\Enemy.cs" />

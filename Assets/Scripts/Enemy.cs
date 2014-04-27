@@ -8,7 +8,7 @@ public class Enemy : CubbartController
 	public float chaseSpeed = 3f;
 	public Vector2 speed = new Vector2(10, 10); //speed of the object
 	public Vector2 direction = new Vector2(-1, 0); // moving directions
-	private Vector2 movement;
+	public Vector3 movement;
 	
 	
 	void Update()
@@ -22,7 +22,7 @@ public class Enemy : CubbartController
 		}
 
 		// 2 - Movement
-		movement = new Vector2(
+		movement = new Vector3(
 			speed.x * direction.x,
 			speed.y * direction.y);
 	}
@@ -30,6 +30,6 @@ public class Enemy : CubbartController
 	void FixedUpdate()
 	{
 		// Apply movement to the rigidbody
-		rigidbody2D.velocity = movement;
+		rigidbody.velocity = movement;
 	}
 }	
