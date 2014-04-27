@@ -3,7 +3,7 @@ guid: bcd3bdd2618406a4b8756bfd5b015d0c
 MonoImporter:
   serializedVersion: 2
   defaultReferences:
-  - Laser_Pref: {fileID: 400000, guid: 1869a2f2127227a48a1be56d0186a5e3, type: 2}
+  - laser_pref: {fileID: 400000, guid: 1869a2f2127227a48a1be56d0186a5e3, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
