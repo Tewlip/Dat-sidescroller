@@ -12,4 +12,14 @@ public class Coins : Score {
 	void Update () {
 	
 	}
+
+	void OnCollisionEnter(Collision collision)
+	{
+		if(collision.gameObject.name == "Cubbart")
+		{
+			score += 100.0f;
+			Destroy(gameObject);
+		}
+
+	}
 }
