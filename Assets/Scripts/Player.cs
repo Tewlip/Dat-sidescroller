@@ -2,78 +2,105 @@
 using System.Collections;
 
 public class Player : CubbartController {
-	
-	private bool isFalling = false; // is a variable only the player needs, which checks whether player is in the air or not.
-	public static float distanceTraveled;
 
+    public static float distanceTraveled;
+    public static int boosts;
+    public float acceleration;
+    public Vector3 jumpVelocity;
+    public float gameOverY;
+
+    private bool touchingPlatform; // is a variable only the player needs, which checks whether player is in the air or not.
+	
 	// Use this for initialization
 	void Start () {
-	
+        boosts = 0;
+        GUIManager.SetBoosts(boosts);
+        distanceTraveled = 0f;
+        GUIManager.SetScore(distanceTraveled);
+        
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
 
-		life = 1;
-		jump = 10;
-		speed = 4;
-
 		targetSpeed = Input.GetAxisRaw("Horizontal")*speed;
 
 		transform.position = new Vector3 (transform.position.x, transform.position.y, 0);// keeps player on the z-axis of virtual environment.
 		distanceTraveled = transform.localPosition.x;
-		//___________________________________________________________________________________
+        GUIManager.SetScore(distanceTraveled);
+		
+        
+        //________________________________________Continuous movement towards right side_________________________________________
 
-		transform.position = transform.position + new Vector3(speed,0,0) * Time.deltaTime;//automatic movement for the hero.
+        transform.Translate(speed * Time.deltaTime, 0f, 0f);
 
 
-		//________________________________________________________________________________________
+		//_________________________________________Slowing Down__________________________________________
 
-
-		if(Input.GetKey(KeyCode.D)) //The possible movement of the hero
-			transform.position += new Vector3(0.2f,0,0);
 		
 		if(Input.GetKey(KeyCode.A))
 			transform.position -= new Vector3(0.2f,0,0);
 
-		if(Input.GetKey(KeyCode.S)) // testing to see if player wont stray from the z-axis
-		transform.position += new Vector3(0,0,1);
 
-		//_________________________________________________________________________________
+		//_______________________________________Jumping________________________________________
 
-		if(Input.GetKey(KeyCode.Space)&& isFalling == false)// checks of space is being pressed and isFalling is false
+		if(touchingPlatform && Input.GetButtonDown("Jump"))// checks of space is being pressed and isFalling is false
 		{
-			rigidbody.velocity = (new Vector3(0,jump,0)); // travels the value of variable jump along the y-axis. Remember to use velocity as addforce can create some funky bugs with onCollision (velocity remains constant while addforce is += to the existing value).
-			isFalling = true;// sets isFalling to true, so a jumps can't be made continously. Remember to place it outside of if, due to how Unity reads the code.
+            rigidbody.AddForce(jumpVelocity, ForceMode.VelocityChange); // travels the value of variable jump along the y-axis. Remember to use velocity as addforce can create some funky bugs with onCollision (velocity remains constant while addforce is += to the existing value).
+			touchingPlatform = false;// sets isFalling to true, so a jumps can't be made continously. Remember to place it outside of if, due to how Unity reads the code.
 
 		}
 
-		//_______________________________________________________________________________
-	
-	}
+		//________________________________________________Attacking_______________________________
+
+        if (Input.GetKey(KeyCode.G))
+        {
+            if (boosts > 0)
+            {
+                //something that spawns the laser object
+                boosts -= 1;
+                GUIManager.SetBoosts(boosts);
+            }
+        }
+
+        //_____________________________________________Game Over___________________________________
+        if (transform.localPosition.y < gameOverY) {
+            Application.LoadLevel("menu");
+        } 
+	} // end of update
+
+    void FixedUpdate() {
+        if (touchingPlatform) {
+            rigidbody.AddForce(acceleration, 0f, 0f, ForceMode.Acceleration);
+        }
+    }
 
 	void OnCollisionStay(Collision interacter)
 	{
 		if(interacter.contacts.Length > 0){ // If the array length of interacter.contacts becomes greater than 0, do the following:
 			if(interacter.contacts[0].point.y < transform.position.y){// If the value of contact point is less than player's current position on the y-axis, do the following:
-				isFalling = false; // changes isFalling to false when in contact with an object
+				touchingPlatform = true; // changes isFalling to false when in contact with an object
 			}
 		}
 		//______________________________________________________________________________
 	}
 
-	void OnCollisionEnter(Collision Player)
+	void OnCollisionEnter()
 	{
 
-		if(Player.gameObject.name == "enemy")
-		{
-			Destroy(gameObject);
-		}
+        touchingPlatform = true;
 
-		if(Player.gameObject.name == "enemy" && Input.GetKey(KeyCode.G))
-		{
-
-		}
 	}
+
+    void OnCollisionExit()
+    {
+        touchingPlatform = false;
+    }
+
+    public static void AddBoost() {
+        boosts += 1;
+        GUIManager.SetBoosts(boosts);
+    }
+
 }
