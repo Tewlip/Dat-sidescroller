@@ -9,6 +9,7 @@ public class Player : MonoBehaviour {
     public Vector3 jumpVelocity;
     public float gameOverY;
 	public float speed;
+	public GameObject laserPrefab;
 
     private bool touchingPlatform; // is a variable only the player needs, which checks whether player is in the air or not.
 	
@@ -67,6 +68,11 @@ public class Player : MonoBehaviour {
                 GUIManager.SetBoosts(boosts);
             }
         }
+
+		if (Input.GetKeyDown("left ctrl"))
+		    {
+			Instantiate(laserPrefab, transform.position, Quaternion.identity);
+		}
 
         //_____________________________________________Game Over___________________________________
         if (transform.localPosition.y < gameOverY) {
