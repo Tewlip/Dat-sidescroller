@@ -17,8 +17,6 @@ public class Player : MonoBehaviour {
         boosts = 0;
         GUIManager.SetBoosts(boosts);
         distanceTraveled = 0f;
-        GUIManager.SetScore(distanceTraveled);
-        
 	}
 	
 	// Update is called once per frame
@@ -28,7 +26,6 @@ public class Player : MonoBehaviour {
 
 		transform.position = new Vector3 (transform.position.x, transform.position.y, 0);// keeps player on the z-axis of virtual environment.
 		distanceTraveled = transform.localPosition.x;
-        GUIManager.SetScore(distanceTraveled);
 		
         
         //________________________________________Continuous movement towards right side_________________________________________
@@ -92,18 +89,7 @@ public class Player : MonoBehaviour {
 		}
 		//______________________________________________________________________________
 	}
-
-	void OnCollisionEnter()
-	{
-
-        touchingPlatform = true;
-
-	}
-
-    void OnCollisionExit()
-    {
-        touchingPlatform = false;
-    }
+	
 
     public static void AddBoost() {
         boosts += 1;

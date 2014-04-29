@@ -3,15 +3,17 @@ using System.Collections.Generic;
 
 public class PlatformManager : MonoBehaviour {
 	
-	public Transform prefab;
+	public Transform platformPrefab;
 	public int numberOfObjects; //used to control how many cubes need to fill the screen
-	public float recycleOffset; //used to define how far behind the player that recycling of of cubes should occur
+	public float recycleOffset; //used to define how far behind the player that recycling of cubes should occur
 	public Vector3 startPosition; //for denoting a point at which we start spawning cubes
 	public Vector3 minSize, maxSize, minGap, maxGap; 
 	public float minY, maxY;
     public Booster booster;
+	public Coins coin;
     public Material[] materials;
     public PhysicMaterial[] physicMaterials;
+
 	
 	private Vector3 nextPosition; //used to keep track of where next cupe needs to spawn.
 	private Queue<Transform> objectQueue;
@@ -20,7 +22,7 @@ public class PlatformManager : MonoBehaviour {
 	void Start () {
 		objectQueue = new Queue<Transform> (numberOfObjects);
 		for (int i = 0; i < numberOfObjects; i++) {
-			objectQueue.Enqueue((Transform)Instantiate(prefab));
+			objectQueue.Enqueue((Transform)Instantiate(platformPrefab));
 		}
 		nextPosition = startPosition;
 		for (int i = 0; i < numberOfObjects; i++) {
@@ -47,6 +49,7 @@ public class PlatformManager : MonoBehaviour {
 		position.x += scale.x * 0.5f;
 		position.y += scale.y * 0.5f;
         booster.SpawnIfAvailable(position);
+		coin.SpawnIfAvailable(position);
 		
 		Transform o = objectQueue.Dequeue();
 		o.localScale = scale;

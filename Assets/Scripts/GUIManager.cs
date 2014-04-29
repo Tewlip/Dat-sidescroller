@@ -21,10 +21,5 @@ public class GUIManager : MonoBehaviour {
     public static void SetBoosts(int boosts)
     {
         instance.boostsText.text = "Attacks: " + boosts.ToString();
-    }
-
-    public static void SetScore(float score)
-    {
-        instance.scoreText.text = "Score: " + score.ToString("f0");
-    }
+	}
 }
