@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Enemy : CubbartController
+public class Enemy : MonoBehaviour
 {
 	public Transform prefab;
 	public Transform target;

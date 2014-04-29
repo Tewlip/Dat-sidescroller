@@ -5,6 +5,7 @@ public class Player : CubbartController {
 	
 	private bool isFalling = true; // is a variable only the player needs, which checks whether player is in the air or not.
 	public static float distanceTraveled;
+	public GameObject LaserPrefab;
 
 	// Use this for initialization
 	void Start () {
@@ -40,6 +41,11 @@ public class Player : CubbartController {
 		if(Input.GetKey(KeyCode.S)) // testing to see if player wont stray from the z-axis
 		transform.position += new Vector3(0,0,1);
 
+		if (Input.GetKeyDown("left ctrl")) //Only fire once
+		{
+			Instantiate(LaserPrefab, transform.position, Quaternion.identity);
+		}
+
 		//_________________________________________________________________________________
 
 		if(Input.GetKey(KeyCode.Space)&& isFalling == false)// checks of space is being pressed and isFalling is false
@@ -66,12 +72,12 @@ public class Player : CubbartController {
 	void OnCollisionEnter(Collision Player)
 	{
 
-		if(Player.gameObject.name == "enemy")
+		if(Player.gameObject.name == "Enemy")
 		{
 			Destroy(gameObject);
 		}
 
-		if(Player.gameObject.name == "enemy" && Input.GetKey(KeyCode.G))
+		if(Player.gameObject.name == "Enemy" && Input.GetKey(KeyCode.G))
 		{
 
 		}
