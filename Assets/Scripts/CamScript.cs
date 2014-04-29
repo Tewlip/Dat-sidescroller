@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CamScript : ObstacleBehavior
+public class CamScript : MonoBehaviour
 {
 
     public Transform target; //set position of the camera according to the player's placement (remember to assign the player object to target parameter in unity)

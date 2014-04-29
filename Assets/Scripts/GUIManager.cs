@@ -8,7 +8,7 @@ public class GUIManager : MonoBehaviour {
     private static GUIManager instance; 
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         instance = this;
 	
 	}
