@@ -51,11 +51,11 @@
      <Compile Include="Assets\Scripts\Coins.cs" />
      <Compile Include="Assets\Scripts\Enemy.cs" />
      <Compile Include="Assets\Scripts\GUIManager.cs" />
+     <Compile Include="Assets\Scripts\Laser.cs" />
      <Compile Include="Assets\Scripts\MouseMenuHandler.cs" />
      <Compile Include="Assets\Scripts\PlatformManager.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
      <Compile Include="Assets\Scripts\Score.cs" />
-     <Compile Include="Assets\Scripts\Shooting.cs" />
      <Compile Include="Assets\Scripts\SkylineManager.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
