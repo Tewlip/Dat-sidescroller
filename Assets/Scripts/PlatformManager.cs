@@ -9,6 +9,9 @@ public class PlatformManager : MonoBehaviour {
 	public Vector3 startPosition; //for denoting a point at which we start spawning cubes
 	public Vector3 minSize, maxSize, minGap, maxGap; 
 	public float minY, maxY;
+    public Booster booster;
+    public Material[] materials;
+    public PhysicMaterial[] physicMaterials;
 	
 	private Vector3 nextPosition; //used to keep track of where next cupe needs to spawn.
 	private Queue<Transform> objectQueue;
@@ -43,10 +46,14 @@ public class PlatformManager : MonoBehaviour {
 		Vector3 position = nextPosition;
 		position.x += scale.x * 0.5f;
 		position.y += scale.y * 0.5f;
+        booster.SpawnIfAvailable(position);
 		
 		Transform o = objectQueue.Dequeue();
 		o.localScale = scale;
 		o.localPosition = position;
+        int materialIndex = Random.Range(0, materials.Length);
+        o.renderer.material = materials[materialIndex];
+        o.collider.material = physicMaterials[materialIndex];
 		objectQueue.Enqueue (o);
 
 		nextPosition += new Vector3 (
