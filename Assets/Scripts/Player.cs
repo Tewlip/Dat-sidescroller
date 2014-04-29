@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Player : CubbartController {
+public class Player : MonoBehaviour {
 
     public static float distanceTraveled;
     public static int boosts;
     public float acceleration;
     public Vector3 jumpVelocity;
     public float gameOverY;
+	public float speed;
 
     private bool touchingPlatform; // is a variable only the player needs, which checks whether player is in the air or not.
 	
@@ -24,7 +25,6 @@ public class Player : CubbartController {
 	void Update () 
 	{
 
-		targetSpeed = Input.GetAxisRaw("Horizontal")*speed;
 
 		transform.position = new Vector3 (transform.position.x, transform.position.y, 0);// keeps player on the z-axis of virtual environment.
 		distanceTraveled = transform.localPosition.x;
@@ -41,6 +41,13 @@ public class Player : CubbartController {
 		
 		if(Input.GetKey(KeyCode.A))
 			transform.position -= new Vector3(0.2f,0,0);
+
+
+		//_________________________________________Speed Up______________________________________________
+
+
+		if(Input.GetKey(KeyCode.D))
+			transform.position += new Vector3(0.2f,0,0);
 
 
 		//_______________________________________Jumping________________________________________
