@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Player : CubbartController {
+public class Player : MonoBehaviour {
 
     public static float distanceTraveled;
     public static int boosts;
     public float acceleration;
     public Vector3 jumpVelocity;
     public float gameOverY;
+	public float speed;
 
     private bool touchingPlatform; // is a variable only the player needs, which checks whether player is in the air or not.
 	
@@ -17,14 +18,18 @@ public class Player : CubbartController {
         GUIManager.SetBoosts(boosts);
         distanceTraveled = 0f;
         GUIManager.SetScore(distanceTraveled);
+        
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
+
+
 		transform.position = new Vector3 (transform.position.x, transform.position.y, 0);// keeps player on the z-axis of virtual environment.
 		distanceTraveled = transform.localPosition.x;
         GUIManager.SetScore(distanceTraveled);
+		
         
         //________________________________________Continuous movement towards right side_________________________________________
 
@@ -38,6 +43,13 @@ public class Player : CubbartController {
 			transform.position -= new Vector3(0.2f,0,0);
 
 
+		//_________________________________________Speed Up______________________________________________
+
+
+		if(Input.GetKey(KeyCode.D))
+			transform.position += new Vector3(0.2f,0,0);
+
+
 		//_______________________________________Jumping________________________________________
 
 		if(touchingPlatform && Input.GetButtonDown("Jump"))// checks of space is being pressed and isFalling is false
@@ -49,7 +61,7 @@ public class Player : CubbartController {
 
 		//________________________________________________Attacking_______________________________
 
-        /*if (Input.GetKeyDown(KeyCode.G))
+        if (Input.GetKey(KeyCode.G))
         {
             if (boosts > 0)
             {
@@ -57,7 +69,7 @@ public class Player : CubbartController {
                 boosts -= 1;
                 GUIManager.SetBoosts(boosts);
             }
-        }*/
+        }
 
         //_____________________________________________Game Over___________________________________
         if (transform.localPosition.y < gameOverY) {
@@ -75,7 +87,7 @@ public class Player : CubbartController {
 	{
 		if(interacter.contacts.Length > 0){ // If the array length of interacter.contacts becomes greater than 0, do the following:
 			if(interacter.contacts[0].point.y < transform.position.y){// If the value of contact point is less than player's current position on the y-axis, do the following:
-				touchingPlatform = true; // changes touchPlatform to true when in contact with an object
+				touchingPlatform = true; // changes isFalling to false when in contact with an object
 			}
 		}
 		//______________________________________________________________________________
