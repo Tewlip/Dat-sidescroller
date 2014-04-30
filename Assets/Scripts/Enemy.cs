@@ -32,15 +32,17 @@ public class Enemy : Booster
 		movement = new Vector3(
 			patrol.x * direction.x,
 			patrol.y * direction.y);
+
+
 		
 	}
+	
 
-
-	void FixedUpdate()
+	void OnTriggerEnter(Collider collision) 
 	{
-		// Apply movement to the rigidbody
-		rigidbody.velocity = movement;
+		if(collision.gameObject.tag == "Laser")
+		{
+			gameObject.SetActive(false);
+		}
 	}
-
-
-}	
+}
