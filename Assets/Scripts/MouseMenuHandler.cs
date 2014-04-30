@@ -7,14 +7,15 @@ public class MouseMenuHandler : MonoBehaviour {
 
     void OnMouseDown() {
         if (this.name == "PlayBT")
-        {
             Application.LoadLevel("Cubbart");
-        }
-        else if (this.name == "HelpBT") {
+        
+        else if (this.name == "HelpBT") 
             Application.LoadLevel("helpScreen");
-        }
-        else if (this.name == "BackBT") {
+
+        else if (this.name == "BackBT") 
             Application.LoadLevel("menu");
-        } 
+
+        else if (this.name == "QuitBT")
+            Application.Quit();
     }
 }

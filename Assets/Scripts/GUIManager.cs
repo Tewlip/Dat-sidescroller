@@ -20,6 +20,6 @@ public class GUIManager : MonoBehaviour {
 
     public static void SetBoosts(int boosts)
     {
-        instance.boostsText.text = "Attacks: " + boosts.ToString();
+        instance.boostsText.text = "Ammo: " + boosts.ToString();
 	}
 }
