@@ -38,7 +38,7 @@ public class Player : MonoBehaviour {
 
 		
 		if(Input.GetKey(KeyCode.A))
-			transform.position -= new Vector3(0.2f,0,0);
+			transform.position -= new Vector3(0.05f,0,0);
 
 
 		//_________________________________________Speed Up______________________________________________
