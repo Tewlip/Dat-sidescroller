@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Player : MonoBehaviour {
 
-    public static float distanceTraveled;
+    public static float distanceTraveled; // variable overview
     public static int boosts;
     public float acceleration;
     public Vector3 jumpVelocity;
@@ -14,9 +14,10 @@ public class Player : MonoBehaviour {
     private bool touchingPlatform; // is a variable only the player needs, which checks whether player is in the air or not.
 	
 	// Use this for initialization
-	void Start () {
-        boosts = 0;
-        GUIManager.SetBoosts(boosts);
+	void Start () { // Sets the value of boosts and distanceTraveled whenver the game starts
+       
+		boosts = 0;
+        GUIManager.SetBoosts(boosts);//Updates GUI display of boosts value
         distanceTraveled = 0f;
 	}
 	
@@ -60,27 +61,28 @@ public class Player : MonoBehaviour {
 		//________________________________________________Attacking_______________________________
 
 
-		if (Input.GetKeyDown("left ctrl") && boosts > 0)
+		if (Input.GetKeyDown("left ctrl") && boosts > 0) // sets a limit to attacks in relation to boosts when initiating attack
 		    {
-			Instantiate(laserPrefab, transform.position, Quaternion.identity);
-			boosts -= 1;
-			GUIManager.SetBoosts(boosts);
+			Instantiate(laserPrefab, transform.position, Quaternion.identity); // Spawns laserPrefab from player's position.
+			boosts -= 1; // substract 1 from variable boosts.
+			GUIManager.SetBoosts(boosts);//Updates GUI display of boosts value 
 
 		}
 
         //_____________________________________________Game Over___________________________________
-        if (transform.localPosition.y < gameOverY) {
-            Application.LoadLevel("menu");
+       
+		if (transform.localPosition.y < gameOverY) { //Load scene " menu" when player's y position is less than variable gameOverY.
+			Application.LoadLevel("menu");
         } 
 	} // end of update
 
     void FixedUpdate() {
-        if (touchingPlatform) {
+        if (touchingPlatform) { // adds acceleration if in contact with platform's rigidbody.
             rigidbody.AddForce(acceleration, 0f, 0f, ForceMode.Acceleration);
         }
     }
 
-	void OnCollisionStay(Collision interacter)
+	void OnCollisionStay(Collision interacter) // sets a condition of jump when colliding with objects.
 	{
 		if(interacter.contacts.Length > 0){ // If the array length of interacter.contacts becomes greater than 0, do the following:
 			if(interacter.contacts[0].point.y < transform.position.y){// If the value of contact point is less than player's current position on the y-axis, do the following:
@@ -91,9 +93,9 @@ public class Player : MonoBehaviour {
 	}
 	
 
-    public static void AddBoost() {
-        boosts += 1;
-        GUIManager.SetBoosts(boosts);
+    public static void AddBoost() { 
+        boosts += 1; // adds 1 to variable boosts.
+		GUIManager.SetBoosts(boosts); //Updates GUI display of boosts value.
     }
 
 }

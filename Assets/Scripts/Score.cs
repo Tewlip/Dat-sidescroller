@@ -6,15 +6,11 @@ public class Score : MonoBehaviour {
 	public static int CoinCount;
 	private float score;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
 	// Update is called once per frame
+
 	void Update () 
 	{
-		if (Player.distanceTraveled == 0)
+		if (Player.distanceTraveled == 0) // reset count counter, when player is at start position.
 		{
 			CoinCount = 0;
 		}
