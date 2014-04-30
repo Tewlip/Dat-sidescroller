@@ -59,19 +59,13 @@ public class Player : MonoBehaviour {
 
 		//________________________________________________Attacking_______________________________
 
-        if (Input.GetKey(KeyCode.G))
-        {
-            if (boosts > 0)
-            {
-                //something that spawns the laser object
-                boosts -= 1;
-                GUIManager.SetBoosts(boosts);
-            }
-        }
 
-		if (Input.GetKeyDown("left ctrl"))
+		if (Input.GetKeyDown("left ctrl") && boosts > 0)
 		    {
 			Instantiate(laserPrefab, transform.position, Quaternion.identity);
+			boosts -= 1;
+			GUIManager.SetBoosts(boosts);
+
 		}
 
         //_____________________________________________Game Over___________________________________
