@@ -2,7 +2,7 @@
 
 public class Booster : MonoBehaviour {
 
-    public Vector3 offset, rotationVelocity;
+    public Vector3 offset, rotationVelocity; //offset determines how high above a platform the booster object is placed, rotationVelocity determine the rotation speed
     public float recycleOffset, spawnChance;
 
 	// Use this for initialization
@@ -19,11 +19,15 @@ public class Booster : MonoBehaviour {
         transform.Rotate(rotationVelocity * Time.deltaTime); // Allows for rotation of the gameobject.
 	}
 
-    public void SpawnIfAvailable(Vector3 position) {
-        if (gameObject.activeSelf || spawnChance <= Random.Range(0f, 100f)) {
+    /// <summary>
+    /// SpawnIfAvailable allows the booster to spawn when a check for availability returns true
+    /// </summary>
+    /// <param name="position"></param>
+    public void SpawnIfAvailable(Vector3 position) { 
+        if (gameObject.activeSelf || spawnChance <= Random.Range(0f, 100f)) { //checks whether the gameObject is active or not
             return;
         }
-        transform.localPosition = position + offset;
+        transform.localPosition = position + offset; //sets the position of the booster object
         gameObject.SetActive(true);
     }
 

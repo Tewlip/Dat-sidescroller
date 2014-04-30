@@ -3,12 +3,12 @@ using System.Collections;
 
 public class GUIManager : MonoBehaviour {
 
-    public GUIText boostsText, scoreText;
+    public GUIText boostsText, scoreText; //creates guitext variables to store boostText and scoreText
 
     private static GUIManager instance; 
 
 	// Use this for initialization
-	void Awake () {
+	void Awake () { //loads all gui text when the application starts
         instance = this;
 	
 	}
@@ -18,7 +18,7 @@ public class GUIManager : MonoBehaviour {
 	
 	}
 
-    public static void SetBoosts(int boosts)
+    public static void SetBoosts(int boosts) 
     {
         instance.boostsText.text = "Ammo: " + boosts.ToString();
 	}
