@@ -14,6 +14,10 @@ public class Score : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
+		if (Player.distanceTraveled == 0)
+		{
+			CoinCount = 0;
+		}
 
 		score = Player.distanceTraveled + (100 * CoinCount); // sets score to the position of Cubbart.
 

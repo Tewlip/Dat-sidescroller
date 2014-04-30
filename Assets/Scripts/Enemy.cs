@@ -32,8 +32,9 @@ public class Enemy : Booster
 		movement = new Vector3(
 			patrol.x * direction.x,
 			patrol.y * direction.y);
+		
 	}
-	
+
 
 	void FixedUpdate()
 	{

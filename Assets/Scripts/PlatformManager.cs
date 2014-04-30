@@ -11,6 +11,7 @@ public class PlatformManager : MonoBehaviour {
 	public float minY, maxY;
     public Booster booster;
 	public Coins coin;
+	public Enemy Killer;
     public Material[] materials;
     public PhysicMaterial[] physicMaterials;
 
@@ -50,6 +51,7 @@ public class PlatformManager : MonoBehaviour {
 		position.y += scale.y * 0.5f;
         booster.SpawnIfAvailable(position);
 		coin.SpawnIfAvailable(position);
+		Killer.SpawnIfAvailable(position);
 		
 		Transform o = objectQueue.Dequeue();
 		o.localScale = scale;
